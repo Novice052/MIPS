@@ -1,0 +1,56 @@
+# CST250
+# John Abbott
+# Project 1
+
+
+.org 0x10000000
+
+li $a0, 2015 #Loading values
+li $a1, 250
+li $s1, 0xf0100000 #Switch address
+li $t0, 0b00000001 #switch0
+li $t1, 0b00000010 #switch1
+li $t2, 0b00000100 #switch2
+li $t3, 0b00001000 #switch3
+li $t4, 0b00010000 #switch4
+
+loop:
+lw $v1, 0($s1)
+
+beq $v1, $t0 add
+nop
+beq $v1, $t1 sub
+nop
+beq $v1, $t2 mult
+nop
+beq $v1, $t3 and
+nop
+beq $v1, $t4 or
+nop
+j loop
+nop
+
+add:
+addu $v0, $a0, $a1 
+j loop
+nop
+
+sub:
+subu $v0, $a0, $a1 
+j loop
+nop
+
+mult:
+mullo $v0, $a0, $a1 
+j loop
+nop
+
+and:
+and $v0, $a0, $a1
+j loop
+nop
+
+or: 
+or $v0, $a0, $a1 
+j loop
+nop
